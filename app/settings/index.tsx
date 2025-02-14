@@ -1,9 +1,9 @@
 import { Link } from "expo-router";
 import { View, Text, StyleSheet, useColorScheme, SafeAreaView, StatusBar } from "react-native";
-import Footer from "../components/Footer";
-import { lightTheme, darkTheme } from '../theme';
+import Footer from "../../components/Footer";
+import { lightTheme, darkTheme } from '../../theme';
 
-export default function Home() {
+export default function Settings() {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
@@ -14,8 +14,8 @@ export default function Home() {
         backgroundColor={theme.background}
       />
       <View style={[styles.content, { borderBottomColor: theme.borderColor }]}>
-        <Text style={{ color: theme.text }}>Home Page</Text>
-        <Link href="/settings" style={{ color: theme.text }}>Go to Settings</Link>
+        <Text style={{ color: theme.text }}>Settings Page</Text>
+        <Link href="/" style={{ color: theme.text }}>Go to Home</Link>
       </View>
       <Footer />
     </SafeAreaView>
