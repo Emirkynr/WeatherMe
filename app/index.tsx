@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, useColorScheme, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Footer from '../components/Footer';
+import WeatherIcon from '../components/WeatherIcon';
 import { lightTheme, darkTheme } from '../theme';
 
 const apiKey = '';
@@ -52,11 +53,9 @@ export default function Home() {
         </TouchableOpacity>
       </View>
       <View style={[styles.content, { borderBottomColor: theme.borderColor }]}>
-        <TouchableOpacity onPress={fetchWeatherData} style={styles.button}>
-          <Text style={{ color: theme.text }}>Fetch Weather Data</Text>
-        </TouchableOpacity>
         {weatherData && (
           <View style={styles.weatherContainer}>
+            <WeatherIcon iconCode={weatherData.list[0].weather[0].icon} temperature={weatherData.list[0].main.temp} />
             <Text style={[styles.weatherText, { color: theme.text }]}>
               Current: {weatherData.list[0].main.temp}°C, {weatherData.list[0].weather[0].description}
             </Text>
@@ -72,6 +71,9 @@ export default function Home() {
           </View>
         )}
       </View>
+      <TouchableOpacity onPress={fetchWeatherData} style={styles.button}>
+        <Text style={{ color: theme.text }}>Fetch Weather Data</Text>
+      </TouchableOpacity>
       <Footer />
     </SafeAreaView>
   );
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    fontSize: 24,
+    fontSize: 21,
     textAlign: 'center',
     flex: 1,
   },
@@ -107,9 +109,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#007BFF',
     borderRadius: 5,
     marginBottom: 20,
+    alignSelf: 'center',
   },
   weatherContainer: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
   },
   weatherText: {
     fontSize: 18,
